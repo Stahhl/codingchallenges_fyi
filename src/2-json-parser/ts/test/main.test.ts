@@ -7,6 +7,8 @@ const input = readFileSync(
   'utf-8'
 );
 
+// test
+
 describe('Test something with input', () => {
   it('should parse JSON correctly', () => {
     const data = JSON.parse(input);
