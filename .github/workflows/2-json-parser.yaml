@@ -9,6 +9,7 @@
 name: 2-json-parser
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
     paths: ["src/2-json-parser"]
