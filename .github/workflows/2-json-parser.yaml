@@ -32,7 +32,7 @@ jobs:
         run: ls
     
       - name: Navigate
-        run: cd src/2-json-parser
+        run: cd ./src/2-json-parser
     
       - name: Setup repo
         uses: actions/checkout@v4
