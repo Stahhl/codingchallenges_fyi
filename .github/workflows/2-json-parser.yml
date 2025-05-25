@@ -25,13 +25,13 @@ jobs:
       uses: actions/checkout@v4
     - name: cd
       run: cd src/2-json-parser/ts
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4.1.0
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4.1.0
     - name: install
       run: pnpm ci
     # - run: npm run build --if-present
