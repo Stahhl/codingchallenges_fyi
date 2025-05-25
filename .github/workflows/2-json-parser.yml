@@ -7,8 +7,10 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
+    paths: ["src/2-json-parser/ts/**", ".github/workflows/2-json-parser.yaml"]
   pull_request:
     branches: [ "main" ]
+    paths: ["src/2-json-parser/ts/**", ".github/workflows/2-json-parser.yaml"]
 
 jobs:
   build:
@@ -31,3 +33,7 @@ jobs:
     - name: Install dependencies
       run: pnpm install
       working-directory: src/2-json-parser/ts
+    - name: Test
+      run: pnpm run test
+      working-directory: src/2-json-parser/ts
+      
