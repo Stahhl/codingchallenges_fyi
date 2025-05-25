@@ -12,10 +12,10 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-    paths: ["src/2-json-parser"]
+    paths: ["src/2-json-parser/ts"]
   pull_request:
     branches: ["main"]
-    paths: ["src/2-json-parser"]
+    paths: ["src/2-json-parser/ts"]
 
 permissions:
   contents: read
