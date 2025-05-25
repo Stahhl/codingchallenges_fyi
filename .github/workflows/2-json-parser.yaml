@@ -25,6 +25,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Foo
+        run: pwd
+
+      - name: Bar
+        run: ls
+    
       - name: Navigate
         run: cd src/2-json-parser
     
