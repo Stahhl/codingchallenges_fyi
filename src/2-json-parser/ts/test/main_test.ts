@@ -1,4 +1,4 @@
-import { assert } from "@std/assert";
+import { assert } from "jsr:@std/assert";
 import { Scanner } from "../src/lib/scanner.ts";
 
 
