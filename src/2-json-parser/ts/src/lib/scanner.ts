@@ -1,3 +1,5 @@
+import type { Token } from "./token";
+
 export class Scanner {
   private tokens: Token[] = [];
   private source: string;
@@ -40,13 +42,4 @@ export class Scanner {
   }
 }
 
-type TokenType =
-  | "brace_left"
-  | "brace_right";
 
-type Token = {
-  type: TokenType;
-  lexeme: string;
-  // deno-lint-ignore no-explicit-any
-  literal: any;
-};
