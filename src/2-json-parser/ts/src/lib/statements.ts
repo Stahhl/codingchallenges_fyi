@@ -3,5 +3,5 @@ export type Statement = {
   value: string;
 } | {
   kind: "object";
-  properties: Statement[]; // can be improved later
+  properties: {key: string; value: Statement[]}; // can be improved later
 };

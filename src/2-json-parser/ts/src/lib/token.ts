@@ -1,6 +1,16 @@
 export type TokenType =
-  | "brace_left"
-  | "brace_right";
+  | "brace_open"
+  | "brace_close"
+  | "bracket_open"
+  | "bracket_close"
+  | "colon"
+  | "comma"
+  | "string"
+  | "number"
+  | "boolean"
+  | "null";
+  // | "whitespace"
+  // | "unknown";
 
 export type Token = {
   type: TokenType;

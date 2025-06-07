@@ -1,5 +1,5 @@
 import type { Statement } from "./statements";
-import type { Token } from "./token";
+import type { Token, TokenType } from "./token";
 
 export class Parser {
     private tokens: Token[];
@@ -11,8 +11,25 @@ export class Parser {
     }
 
     parse(): Statement[] {
-        if (this.tokens.length <= 0) this.errors.push("No tokens...");
+        if (this.tokens.length <= 0) {
+            this.errors.push("Invalid input...");
+            return [];
+        }
 
-        return [];
+        const statements: Statement[] = [];
+
+        while (!this.isAtEnd()) {
+            this.advance();
+        }
+
+        return statements;
+    }
+
+    private advance(): Token {
+        return this.tokens[this.current++];
+    }
+
+    private isAtEnd(): boolean {
+        return this.current >= this.tokens.length;
     }
 }
