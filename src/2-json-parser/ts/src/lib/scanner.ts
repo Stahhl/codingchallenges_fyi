@@ -1,4 +1,4 @@
-import type { Token, TokenType } from "./token";
+import type { Token } from "./token";
 
 export class Scanner {
   private tokens: Token[] = [];
@@ -53,7 +53,7 @@ export class Scanner {
         break;
       }
       default: {
-        console.log(`DEFAULT: ${c}`);
+        console.log(`DEFAULT: ${c}`)
         if (this.number(c)) break;
         if (this.keyword()) break;
         this.errors.push(`Unrecognized '${c}' at position ${this.current}`);
@@ -118,26 +118,27 @@ export class Scanner {
     return false;
   }
 
-  private isDigit(char: string): boolean {
-    return /^[0-9]$/.test(char);
-  }
-
   private string() {
     while (this.peek() != '"' && !this.isAtEnd()) {
       this.advance();
     }
-
+    
     if (this.isAtEnd()) {
       this.errors.push("Unterminated string...");
       return;
     }
-
+    
     this.advance();
-
+    
     const lexeme = this.source.substring(this.start, this.current);
     const literal = this.source.substring(this.start + 1, this.current - 1);
-
+    
     this.addToken({ type: "string", lexeme: lexeme, literal: literal });
+  }
+  
+  // Utility methods
+  private isDigit(char: string): boolean {
+    return /^[0-9]$/.test(char);
   }
 
   private addToken(token: Token) {
@@ -154,6 +155,6 @@ export class Scanner {
   }
 
   private isAtEnd(offset: number = 0): boolean {
-    return this.current + offset >= this.source.length;
+    return (this.current + offset) >= this.source.length;
   }
 }
