@@ -1,6 +1,3 @@
-# How to
-Using Deno for unit testing
-
 # Template for a two panel layout
 https://github.com/Stahhl/panel-template
 ![img](/public/capture.png) 
