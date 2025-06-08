@@ -1,11 +1,22 @@
 import { useEffect, useState } from 'react'
+import { Scanner } from './lib/scanner';
+import { Parser } from './lib/parser';
 
 function App() {
   const [text, setText] = useState('');
   const [submittedText, setSubmittedText] = useState('');
 
   const handleSubmit = () => {
-    setSubmittedText(text);
+    const scanner = new Scanner(text);
+    const tokens = scanner.scan();
+
+    const parser = new Parser(tokens);
+    parser.parse();
+
+    const result = (scanner.errors.length > 0 || parser.errors.length > 0) ? JSON.stringify({ erros: { scanner: scanner.errors, parser: parser.errors } }, null, 2) : 'Valid ✅';
+    console.log(result);
+
+    setSubmittedText(result);
   };
 
   // Keyboard shortcut Ctrl+Enter
@@ -50,7 +61,7 @@ function App() {
 
         {/* Right Panel */}
         <div className="w-1/2 bg-white p-4 rounded-lg shadow">
-            {submittedText || <span className="text-gray-400">Output…</span>}
+          {submittedText || <span className="text-gray-400">Output…</span>}
         </div>
       </div>
     </div>
