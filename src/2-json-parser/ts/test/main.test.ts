@@ -3,6 +3,7 @@ import { resolve } from "path";
 import { describe, expect, it } from "vitest";
 import { Scanner } from "../src/lib/scanner";
 import { Parser } from "../src/lib/parser";
+import { JavascriptConverter } from "../src/lib/converters/javascriptConverter"
 
 function readFile(path: string): string {
   return readFileSync(resolve(process.cwd(), "test/tests" + path), "utf-8");
@@ -142,16 +143,35 @@ describe("step 4", () => {
     const scanner = new Scanner(data);
     const tokens = scanner.scan();
 
-    scanner.errors.forEach(e => console.log(e));
-    tokens.forEach(t => console.log(t));
+    // scanner.errors.forEach(e => console.log(e));
+    // tokens.forEach(t => console.log(t));
 
     const parser = new Parser(tokens);
     const elements = parser.parse();
 
-    parser.errors.forEach(e => console.log(e));
-    elements.forEach(e => console.log(e));
+    // parser.errors.forEach(e => console.log(e));
+    // elements.forEach(e => console.log(e));
 
     expect(scanner.errors.length).toBeGreaterThan(0);
     expect(parser.errors.length).toBe(0);
   }) 
+});
+
+
+describe("convert to javascript", () => {
+  it("should work", () => {
+        const data = readFile("/step3/valid.json");
+    const scanner = new Scanner(data);
+    const tokens = scanner.scan();
+
+    const parser = new Parser(tokens);
+    const elements = parser.parse();
+
+    const converter = new JavascriptConverter(elements);
+    const js = converter.convert();
+
+    console.log(js)
+
+    expect(js.length).toBeGreaterThan(0);
+  })
 });

@@ -53,7 +53,7 @@ export class Scanner {
         break;
       }
       default: {
-        console.log(`DEFAULT: ${c}`)
+        // console.log(`DEFAULT: ${c}`)
         if (this.number(c)) break;
         if (this.keyword()) break;
         this.errors.push(`Unrecognized '${c}' at position ${this.current}`);
