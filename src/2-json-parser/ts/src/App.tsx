@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Scanner } from './lib/scanner';
 import { Parser } from './lib/parser';
 import { JavascriptConverter } from './lib/converters/javascriptConverter';
+import { TypeScriptConverter } from './lib/converters/typescriptConverter';
 
 function App() {
   const [text, setText] = useState('');
@@ -10,6 +11,7 @@ function App() {
   const options = [
     "Validate json",
     "Convert to javascript",
+    "Convert to typescript",
   ];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -41,6 +43,11 @@ function App() {
       const converter = new JavascriptConverter(elements);
       const js = converter.convert();
       setSubmittedText(js);
+    }
+    else if (selectedOption == options[2]) {
+      const converter = new TypeScriptConverter(elements);
+      const ts = converter.convert();
+      setSubmittedText(ts);
     }
   };
 
