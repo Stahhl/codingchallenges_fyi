@@ -42,5 +42,5 @@ jobs:
         firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CODINGCHALLENGES_2_JSON_9425A }}
         channelId: live
         projectId: codingchallenges-2-json-9425a
-        entryPoint: src/2-json-parser/ts/firebase.json
+        entryPoint: src/2-json-parser/ts
       
