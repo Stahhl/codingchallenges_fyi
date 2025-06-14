@@ -1,6 +1,17 @@
+# 2-json-parser
+https://codingchallenges.fyi/challenges/challenge-json-parser
+
+Extened with a web interface allows validation of json aswell as converstion to some code objects.
+
+![img](/src/2-json-parser/ts/public/image.png)
+
+# Deployment
+Deployed to firebase using github actions.
+
+https://codingchallenges-2-json-9425a.firebaseapp.com/
+
 # Template for a two panel layout
 https://github.com/Stahhl/panel-template
-![img](/public/capture.png) 
 
 # React + TypeScript + Vite
 
