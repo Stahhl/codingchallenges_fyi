@@ -11,3 +11,6 @@ def test_bar():
     result = char_count(read_file())
     for k, v in result.items():
         print(f"{k}: {v}")
+
+    assert result["X"] == 333
+    assert result["t"] == 223000
