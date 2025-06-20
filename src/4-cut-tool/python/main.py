@@ -13,4 +13,5 @@ content = read_file(args.input_file).decode("utf-8")
 
 split = split_str(content, args.delim)
 
-print(split[int(args.field)])
+for s in split[int(args.field) - 1]:
+    print(s)
