@@ -1,17 +1,20 @@
 import argparse
+import sys
 from lib import *
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-f", dest="field", help="field number", nargs="?")
 parser.add_argument("-d", dest="delim", help="delimiter", nargs="?", required=False, default="\t")
-parser.add_argument("input_file", help="Path of the input file")
+# path to a file OR data from stdin
+parser.add_argument('input', nargs='?', type=argparse.FileType('rb'), default=sys.stdin, help="Input file (default: stdin)")
 
 args = parser.parse_args()
 
 fields = parse_fields(args.field)
 
-content = read_file(args.input_file).decode("utf-8")
+data: bytes = sys.stdin.buffer.read() if args.input == sys.stdin else args.input.read()
+content = data.decode("utf-8")
 
 split = split_str(content, args.delim)
 print(split)
