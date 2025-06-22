@@ -17,7 +17,6 @@ data: bytes = sys.stdin.buffer.read() if args.input == sys.stdin else args.input
 content = data.decode("utf-8")
 
 split = split_str(content, args.delim)
-print(split)
 
-for row in zip(*split[fields[0]:fields[1]]):
+for row in zip(*split[fields[0]-1:fields[1]]):
     print(*row)

@@ -11,11 +11,11 @@ def parse_fields(field: str) -> tuple[int, int]:
         exit(1)
     if "," in field:
         split = field.split(",")
-        return int(split[0])-1,int(split[1])
+        return int(split[0]),int(split[1])
     elif " " in field:
         split = field.split(" ")
-        return int(split[0])-1,int(split[1])
-    return int(field)-1,int(field)
+        return int(split[0]),int(split[1])
+    return int(field),int(field)
 
 def read_file(file_path: str) -> bytes:
     with open(file_path, 'rb') as f:
