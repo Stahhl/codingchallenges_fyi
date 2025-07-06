@@ -16,6 +16,12 @@ def test_sort_words_with_duplicates(algorithm):
     assert sorted_words == ["a", "a", "b", "c", "c"]
 
 @pytest.mark.parametrize("algorithm", ["timsort", "radix", "merge", "quick", "heap"])
+def test_sort_words_unique(algorithm):
+    words = ["c", "a", "b", "a", "c", "d"]
+    sorted_words = sort_words(words, algorithm=algorithm, unique=True)
+    assert sorted_words == ["a", "b", "c", "d"]
+
+@pytest.mark.parametrize("algorithm", ["timsort", "radix", "merge", "quick", "heap"])
 def test_sort_words_empty_list(algorithm):
     words = []
     sorted_words = sort_words(words, algorithm=algorithm)

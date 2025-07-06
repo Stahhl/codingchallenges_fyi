@@ -87,7 +87,7 @@ def _random_sort(arr: list[str]) -> list[str]:
     return sorted(arr, key=get_hash)
 
 
-def sort_words(words: list[str], algorithm: str = 'timsort') -> list[str]:
+def sort_words(words: list[str], algorithm: str = 'timsort', unique: bool = False) -> list[str]:
   """
   Sorts a list of words lexicographically using a specified algorithm.
 
@@ -95,12 +95,17 @@ def sort_words(words: list[str], algorithm: str = 'timsort') -> list[str]:
     words: A list of strings.
     algorithm: The sorting algorithm to use. One of 'timsort' (default), 
                'radix', 'merge', 'quick', 'heap', or 'random'.
+    unique: If True, only unique words will be returned. Defaults to False.
 
   Returns:
     A new list of strings, sorted lexicographically.
   """
   # Make a copy to avoid modifying the original list for in-place sorts
   words_copy = words.copy()
+
+  if unique:
+      words_copy = list(set(words_copy)) # Remove duplicates
+
   if algorithm == 'timsort':
       # sorted() uses Timsort
       return sorted(words_copy)
