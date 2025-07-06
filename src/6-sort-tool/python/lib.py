@@ -56,13 +56,25 @@ def _heapsort(arr: list[str]) -> list[str]:
 def _radix_sort(arr: list[str]) -> list[str]:
     if not arr:
         return []
-    max_len = len(max(arr, key=len))
+
+    max_len = 0
+    for s in arr:
+        max_len = max(max_len, len(s))
+
+    # Determine the maximum character ordinal value to size buckets
+    max_char_val = 0
+    for s in arr:
+        for char in s:
+            max_char_val = max(max_char_val, ord(char))
+
+    # Ensure bucket size is at least 256 for ASCII, and large enough for any encountered character
+    bucket_size = max(256, max_char_val + 1)
 
     # Pad strings to have the same length
     padded_arr = [s.ljust(max_len) for s in arr]
 
     for i in range(max_len - 1, -1, -1):
-        buckets = [[] for _ in range(256)] # Assuming ASCII
+        buckets = [[] for _ in range(bucket_size)]
         for s in padded_arr:
             buckets[ord(s[i])].append(s)
         padded_arr = [s for bucket in buckets for s in bucket]
