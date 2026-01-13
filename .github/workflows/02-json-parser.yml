@@ -1,16 +1,16 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: 2-json-parser CI
+name: 02-json-parser CI
 
 on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
-    paths: ["src/2-json-parser/ts/**", ".github/workflows/2-json-parser.yaml"]
+    paths: ["src/02-json-parser/ts/**", ".github/workflows/02-json-parser.yml"]
   pull_request:
     branches: [ "main" ]
-    paths: ["src/2-json-parser/ts/**", ".github/workflows/2-json-parser.yaml"]
+    paths: ["src/02-json-parser/ts/**", ".github/workflows/02-json-parser.yml"]
 
 jobs:
   build:
@@ -29,16 +29,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-        cache-dependency-path: src/2-json-parser/ts/pnpm-lock.yaml
+        cache-dependency-path: src/02-json-parser/ts/pnpm-lock.yaml
     - name: Install dependencies
       run: pnpm install
-      working-directory: src/2-json-parser/ts
+      working-directory: src/02-json-parser/ts
     - name: Test
       run: pnpm run test
-      working-directory: src/2-json-parser/ts
+      working-directory: src/02-json-parser/ts
     - name: Build
       run: pnpm run build
-      working-directory: src/2-json-parser/ts
+      working-directory: src/02-json-parser/ts
     - name: Firebase
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
@@ -46,5 +46,5 @@ jobs:
         firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CODINGCHALLENGES_2_JSON_9425A }}
         channelId: live
         projectId: codingchallenges-2-json-9425a
-        entryPoint: src/2-json-parser/ts
+        entryPoint: src/02-json-parser/ts
       
